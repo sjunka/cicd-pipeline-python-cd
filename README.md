@@ -6,8 +6,9 @@ Pipeline de CI/CD para una calculadora web en Flask. Parte del CI del Taller 2 y
 
 ## Integrantes
 
-Texto usado en `AUTOR`: `Sergio Junca`
+Texto usado en `AUTOR`: `Sergio Alfredo Junca Valero | Valeria Cardona Urrea`
 
 | Nombre completo | Usuario de GitHub | Rol |
 |---|---|---|
-| Sergio Junca | [sjunka](https://github.com/sjunka) | Propietario del repositorio |
+| Sergio Alfredo Junca Valero | [sjunka](https://github.com/sjunka) | Propietario del repositorio |
+| Valeria Cardona Urrea | [valri2104](https://github.com/valri2104) | Colaboradora |
