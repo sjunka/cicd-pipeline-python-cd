@@ -54,3 +54,26 @@ def test_health(client):
     response = client.get("/health")
     assert response.status_code == 200
     assert response.get_json() == {"status": "ok", "version": "local"}
+
+
+def test_index_post_potencia(client):
+    response = client.post('/', data={'num1': '2', 'num2': '3', 'operacion': 'potencia'})
+    assert response.status_code == 200
+    assert b'Resultado: 8.0' in response.data
+
+
+def test_index_post_modulo(client):
+    response = client.post('/', data={'num1': '7', 'num2': '3', 'operacion': 'modulo'})
+    assert response.status_code == 200
+    assert b'Resultado: 1.0' in response.data
+
+
+def test_index_post_modulo_por_cero(client):
+    response = client.post('/', data={'num1': '5', 'num2': '0', 'operacion': 'modulo'})
+    assert response.status_code == 200
+    assert 'No se puede dividir por cero'.encode() in response.data
+
+
+def test_index_operacion_invalida(client):
+    response = client.post('/', data={'num1': '1', 'num2': '1', 'operacion': 'xyz'})
+    assert 'Operación no válida'.encode() in response.data

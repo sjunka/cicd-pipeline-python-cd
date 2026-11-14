@@ -6,7 +6,16 @@ import os
 from flask import Flask, render_template, request
 from flask_wtf.csrf import CSRFProtect
 
-from .calculadora import sumar, restar, multiplicar, dividir
+from .calculadora import sumar, restar, multiplicar, dividir, potencia, modulo
+
+OPERACIONES = {
+    "sumar": sumar,
+    "restar": restar,
+    "multiplicar": multiplicar,
+    "dividir": dividir,
+    "potencia": potencia,
+    "modulo": modulo,
+}
 
 app = Flask(__name__)
 # Clave aleatoria para firmar el token CSRF. En Docker, Gunicorn usa --preload
@@ -25,16 +34,11 @@ def index():
             num2 = float(request.form["num2"])
             operacion = request.form["operacion"]
 
-            if operacion == "sumar":
-                resultado = sumar(num1, num2)
-            elif operacion == "restar":
-                resultado = restar(num1, num2)
-            elif operacion == "multiplicar":
-                resultado = multiplicar(num1, num2)
-            elif operacion == "dividir":
-                resultado = dividir(num1, num2)
-            else:
+            funcion = OPERACIONES.get(operacion)
+            if funcion is None:
                 resultado = "Operación no válida"
+            else:
+                resultado = funcion(num1, num2)
         except ValueError:
             resultado = "Error: Introduce números válidos"
         except ZeroDivisionError:
