@@ -18,6 +18,8 @@ def browser():
     options.add_argument("--headless")  # Ejecuta sin interfaz gráfica
     options.add_argument("--no-sandbox")  # Necesario para algunos entornos
     options.add_argument("--disable-dev-shm-usage")  # Necesario para algunos entornos
+    # Chrome 157 activa HTTPS-First y deja en blanco el ALB, que solo atiende HTTP
+    options.add_argument("--disable-features=HttpsFirstBalancedModeAutoEnable")
     driver = webdriver.Chrome(options=options)
 
     # Opción 2: Firefox (headless)
