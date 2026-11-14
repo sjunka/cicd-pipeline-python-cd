@@ -43,5 +43,11 @@ def index():
     return render_template("index.html", resultado=resultado)
 
 
+@app.route("/health")
+def health():
+    """Health check usado por el Load Balancer. Incluye la versión desplegada."""
+    return {"status": "ok", "version": os.environ.get("APP_VERSION", "local")}
+
+
 if __name__ == "__main__":  # pragma: no cover
     app.run(port=5000)

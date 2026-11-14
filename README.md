@@ -1,8 +1,8 @@
-# cicd-pipeline-python
+# cicd-pipeline-python-cd
 
-Taller Entregable 2 del curso Integración y Entrega Continua de Software (SI6008), Universidad EAFIT.
+Taller Entregable 3 del curso Integración y Entrega Continua de Software (SI6008), Universidad EAFIT.
 
-Pipeline de CI para una calculadora web en Flask: Black, Pylint y Flake8, pruebas unitarias y de componente con cobertura, pruebas de aceptación con Selenium contra la imagen Docker, análisis en SonarCloud y publicación de la imagen en Docker Hub.
+Pipeline de CI/CD para una calculadora web en Flask. Parte del CI del Taller 2 y agrega despliegue continuo a Staging y Producción en AWS ECS (Fargate) con Terraform.
 
 ## Integrantes
 

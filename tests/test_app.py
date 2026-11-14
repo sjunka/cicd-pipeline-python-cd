@@ -48,3 +48,9 @@ def test_index_post_invalid_numbers(client):
     response = client.post('/', data={'num1': 'a', 'num2': 'b', 'operacion': 'sumar'})
     assert response.status_code == 200
     assert b'Error: Introduce n\xc3\xbameros v\xc3\xa1lidos' in response.data
+
+
+def test_health(client):
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.get_json() == {"status": "ok", "version": "local"}
