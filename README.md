@@ -15,7 +15,7 @@ Texto usado en `AUTOR`: `Sergio Alfredo Junca Valero | Valeria Cardona Urrea`
 
 ## Evidencias
 
-- Ejecución del pipeline del merge de las nuevas funciones: PENDIENTE
+- Ejecución del pipeline del merge de las nuevas funciones (5 jobs en verde, con la aprobación de Producción): https://github.com/sjunka/cicd-pipeline-python-cd/actions/runs/43778738429
 - Pull Request de las nuevas funciones: https://github.com/sjunka/cicd-pipeline-python-cd/pull/1
 - URLs de los ALB:
 
@@ -24,7 +24,7 @@ Staging:    http://calculadora-staging-alb-318186033.us-east-1.elb.amazonaws.com
 Production: http://calculadora-production-alb-1232478530.us-east-1.elb.amazonaws.com
 ```
 
-- Capturas (PENDIENTE, se toman después de aprobar Producción):
+- Capturas. La primera es la calculadora en Producción con 2 potencia 10 = 1024. La segunda es la salida de `aws elbv2 describe-target-health` para `calculadora-production-tg` (no es una captura de la consola): el único target aparece `healthy`.
 
 ![Operación nueva en Producción](docs/evidencias/produccion.png)
 ![Target Group de Producción saludable](docs/evidencias/target-groups.png)
@@ -80,6 +80,6 @@ La razón es que staging es donde se valida el comportamiento. En producción ya
 
 Con la aprobación manual es Entrega Continua: todo llega solo hasta staging y queda listo para producción, pero una persona decide cuándo pasa.
 
-Antes de aprobar revisamos en staging: PENDIENTE (por ejemplo, que `test-staging` quedó en verde, que `/health` mostraba el SHA del merge y que las operaciones nuevas funcionaban desde el navegador).
+Antes de aprobar revisamos en staging que `test-staging` quedó en verde (incluye las pruebas de aceptación de potencia y módulo) y que `/health` mostraba el SHA del merge, `4ca51a6`.
 
 Si una versión no pasa el health check, el target group nunca la marca saludable y ECS no termina el despliegue. El circuit breaker (`deployment_circuit_breaker` con `rollback = true`) lo detecta, marca el despliegue como fallido y vuelve a la última task definition que funcionaba. Como el servicio tiene `wait_for_steady_state = true`, el `terraform apply` falla y el job de despliegue queda en rojo. Además el job de pruebas nunca ve el SHA nuevo en `/health` y también falla.
