@@ -74,7 +74,7 @@ La razón es que staging es donde se valida el comportamiento. En producción ya
 ### 6. Experiencia de cada integrante
 
 - Sergio Alfredo Junca Valero: Me pareció una experiencia muy útil porque permite hacer cambios con mayor confianza, sabiendo que cada etapa valida el código antes de llegar a producción. El CI/CD facilita el trabajo y reduce errores, aunque las aprobaciones manuales pueden hacer un poco más lento el proceso.
-- Valeria Cardona Urrea: PENDIENTE (la escribe Valeria).
+- Valeria Cardona Urrea: Fue una experiencia enriquecedora porque pude ver cómo un mismo cambio pasa por todas las etapas, desde las pruebas en el runner hasta producción, sin tener que desplegar nada a mano. Lo que más me gustó fue que staging nos dejara probar la imagen real antes de aprobarla, porque da tranquilidad al momento de pasar a producción. Lo más retador fue entender Terraform y el manejo del estado en S3, pero una vez configurado, desplegar se volvió algo repetible y mucho más confiable.
 
 ### 7. Entrega o despliegue continuo
 
